@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Camile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(270deg, #C936F5, #F51B4A, #F55CDA, #8327F5, #F52D14, #F52AD0);
+            background-size: 600% 600%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        .mensagem {
+            margin: 20px auto;
+            width: 90%;
+            font-size: 1em;
+        }
+
+        .contador {
+            font-size: 1.1em;
+            margin: 20px 0;
+        }
+
+        .carrossel {
+            position: relative;
+            width: 90%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .carrossel img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .musica {
+            margin-top: 20px;
+        }
+
+        audio {
+            width: 90%;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Eu te Amo</h1>
+
+    <div class="mensagem">
+        <p>Desde o dia em que começamos a namorar, minha vida ficou mais feliz, mais estressada, mais cheia de amor, com um significado. Cada
+            momento ao seu lado é absurdo (eu tentei, mas realmente não consigo descrever com palavras como é bom estar com você!), 
+            e sou eternamente grato por você estar comigo. Eu te amo muita coisa, minha pequena!</p>
+    </div>
+
+
+    <div class="carrossel">
+        <img id="foto" src="foto1.jpg" alt="Foto do casal">
+    </div>
+
+    <div class="contador" id="contador"></div>
+
+    <div class="musica" style="display: none;">
+        <audio controls autoplay loop>
+            <source src="musica_romantica.mp3" type="audio/mp3">
+        </audio>
+    </div>
+
+    <script>
+        const dataInicio = new Date("2025-03-14T00:00:00");
+        const contador = document.getElementById("contador");
+
+        function atualizarContador() {
+            const agora = new Date();
+            const diff = agora - dataInicio;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            contador.textContent = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos.`;
+        }
+
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+
+        const fotos = [
+            "foto1.jpg",
+            "foto2.jpg",
+            "foto3.jpg",
+            "foto4.jpg",
+            "foto5.jpg"
+        ];
+
+        let index = 0;
+        const fotoElement = document.getElementById("foto");
+
+        setInterval(() => {
+            index = (index + 1) % fotos.length;
+            fotoElement.src = fotos[index];
+        }, 10000);
+    </script>
+</body>
+
+</html>
